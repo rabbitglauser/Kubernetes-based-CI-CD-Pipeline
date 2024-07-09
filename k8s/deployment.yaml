@@ -1,20 +1,19 @@
-# my-project/k8s/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: your-app-name
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: your-app-name
   template:
     metadata:
       labels:
-        app: my-app
+        app: your-app-name
     spec:
       containers:
-        - name: my-app
-          image: my-app:latest
+        - name: your-app-name
+          image: your-registry-url/your-app-name:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8080
