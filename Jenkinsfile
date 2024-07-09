@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        REGISTRY = 'your-registry-url'
-        REGISTRY_CREDENTIALS_ID = 'registry-credentials-id'
-        KUBECONFIG_CREDENTIALS_ID = 'kubeconfig-credentials-id'
-        IMAGE_NAME = 'your-app-name'
+        REGISTRY = '*********************'
+        REGISTRY_CREDENTIALS_ID = '**************'
+        KUBECONFIG_CREDENTIALS_ID = '*********'
+        IMAGE_NAME = 'Pipeline'
     }
     stages {
         stage('Build') {
