@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define Maven installation to use (if not configured in Jenkins Global Tool Configuration)
+        // Example:
+        // M2_HOME = '/path/to/your/maven'
+        // PATH = "$M2_HOME/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout source code from GitHub repository
+                git credentialsId: 'your-github-credentials', url: 'https://github.com/your/repo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Set up Maven settings (if needed)
+                // Example:
+                // withMaven(mavenSettingsConfig: 'my-maven-settings') {
+                //     sh 'mvn clean package'
+                // }
+
+                // If Maven settings are not needed:
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run Maven tests
+                // Example:
+                // withMaven(mavenSettingsConfig: 'my-maven-settings') {
+                //     sh 'mvn test'
+                // }
+
+                // If Maven settings are not needed:
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy artifacts (if applicable)
+                // Example:
+                // withMaven(mavenSettingsConfig: 'my-maven-settings') {
+                //     sh 'mvn deploy'
+                // }
+
+                // If Maven settings are not needed:
+                sh 'mvn deploy'
+            }
+        }
+    }
+
+    post {
+        success {
+            // Actions to perform if the pipeline succeeds (e.g., notifications)
+            echo 'Maven build successful!'
+        }
+        failure {
+            // Actions to perform if the pipeline fails (e.g., notifications)
+            echo 'Maven build failed!'
+        }
+    }
+}
